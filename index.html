@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="nom_application_angular" ng-controller="nom_controleur_angular">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/materialize.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	</head>
+	<body>
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo" style="margin-left: 15px">Démonstration Angular.js</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="sass.html">Sass</a></li>
+					<li><a href="badges.html">Components</a></li>
+					<li><a href="collapsible.html">JavaScript</a></li>
+				</ul>
+			</div>
+		</nav>
+		<main class="container">
+		<h4 class="center">Introduction à la démonstration</h4>
+		Cette démonstration d'Angular utilise pour les exemples un objet <b>"contact"</b>, qui comprend ces champs:
+		
+		<table class="striped">
+			<b>
+			<thead><th>Champ</th><th>Type</th></thead>
+			</b>
+			<tr><td>id</td><td>Nombre</td></tr>
+			<tr><td>nom</td><td>String</td></tr>
+			<tr><td>prenom</td><td>String</td></tr>
+			<tr><td>addresse</td><td>String</td></tr>
+			<tr><td>ville</td><td>String</td></tr>
+			<tr><td>code_postal</td><td>String</td></tr>
+			<tr><td>actif</td><td>Booléen</td></tr>
+		</table>
+		<br>
+		<h4 class="center">Synchronisation de la vue et du modèle</h4>
+		<h5 class="center" style="color: #C9C9C9; font-size: 1.5em">Directives utilisées dans cet exemple: <b>ng-model</b>, <b>ng-show</b>, <b>ng-hide</b></h5>
+		<p align="justify">
+			Les données d'une application Angular sont directement reliées aux données sur la vue. C'est à dire qu'une modification de la valeur d'une donnée
+			dans l'application Angular entraînera immédiatement une modification de la donnée dans la vue et vice-versa. La directive angular utilisée pour lier un champ dans un formulaire à une donnée de l'application se nomme <b>ng-model</b>.
+		</p>
+		<p align="justify">
+			Une autre fonctionnalité explorée dans cet exemple est l'utilisation de la directive <b>ng-show</b>, qui permet d'afficher ou de masquer un élément à l'aide d'une variable booléenne fournie par l'application Angular.
+		</p>
+		
+		<table class="striped">
+			<thead><th>Nom Complet</th><th>Addresse</th><th></th></thead>
+			<tr ng-repeat="x in contacts | filter :{prenom:filtrePrenom} | filter :{nom:filtreNom} | orderBy:champTri" ng-show="(masquerInactifs && x.actif) || !masquerInactifs">
+				<td>{{x.prenom}}, {{x.nom}}</td>
+				<td>{{x.adresse}} <br>{{x.ville}}<br>{{x.code_postal}}</td>
+				<td><a class="btn-floating btn-large waves-effect waves-light red" ng-click="supprimerContact(x.id)"><i class="material-icons">delete</i></a></td>
+			</tr>
+		</table>
+		<br><br><div class="center container">
+			<div class=""><h5>Ajouter un contact</h5>
+				<div class="row">
+					<div class="input-field col s4">
+						<input type="text" id="nouveauNom" ng-model="nouveauNom">
+						<label for="nouveauNom">Nom</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="nouveauPrenom" ng-model="nouveauPrenom">
+						<label for="nouveauPrenom">Prénom</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="checkbox" id="userActif" ng-model="userActif">
+						<label for="userActif">Actif</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s4">
+						<input type="text" id="nouvelleAddresse" ng-model="nouvelleAddresse">
+						<label for="nouvelleAddresse">Adresse</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="nouvelleVille" ng-model="nouvelleVille">
+						<label for="nouvelleVille">Ville</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="nouveauCP" ng-model="nouveauCP">
+						<label for="nouveauCP">Code Postal</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row center">
+			<button type="button" class="btn waves-effect waves-ripple" ng-click="ajouter()">Ajouter le contact</button>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col s4">
+				<div ng-repeat="x in contacts">
+					<input type="text" ng-model="x.nom" id="{{x.nom}}{{x.prenom}}">
+				</div>
+			</div>
+			<div class="col s8" style="display: table; height: 180px; overflow: hidden;">
+				<div style="display: table-cell; vertical-align: middle;">
+					<h5 style="font-size: 1.2em"><b>Modification du modèle</b><b style="color: #C9C9C9"> - ng-model</b></h5>
+					<p align="justify">La modification d'un nom dans ces champs modifiera au même moment le nom dans le tableau, car leur valeur est inter-reliée.
+						</p><p align="justify"> De la même manière, le tableau ci-dessus faisant référence à la variable d'application "<b>contacts</b>", qui est un "array" contenant tous les contacts (grâce à <b>JSON</b>), l'ajout ou le retrait d'un contact à cet array entraînera l'ajout ou le retrait d'une entrée au tableau.</p>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row" align="justify">
+				<h4 class="center"  >Tri des données à afficher
+				<h5 class="center" style="color: #C9C9C9; font-size: 1.5em">Directives utilisées dans cet exemple: ng-show et filtres</h5>
+				
+				Il est donc possible de lier des valeurs affichées à l'écran aux variables d'application. La case à cocher ci-dessous est liée à la directive <b>ng-show</b> des rangées du tableau ci-dessus.
+				Les rangées du tableau seront seulement affichées si la case n'est pas cochée et que l'attribut actif est vrai.
+				
+				<div class="input-field center">
+					<input type="checkbox" id="cbVisible" ng-model="masquerInactifs">
+					<label for="cbVisible" ng-click="toast()">Masquer les contacts inactifs</label>
+				</div>
+				<br><br>
+				Angular propose une directive, appelée "<b>filter</b>", permettant d'effectuer un tri rapide des données dans un "array". Cette directive est appelée de la manière suivante:
+				<br><br>
+				
+				<div class="center">
+					<code class="center">
+					<b>ng-repeat</b>="x <b>in</b> contacts <b>| filter</b> :{prenom:filtrePrenom}"
+					</code>
+					<br><br>
+					<p style="text-align: justify">
+						Il est aussi possible d'enchaîner les filtres, par exemple, le filtre ci-dessous masquera tous les contacts dont le nom et le prénom ne correspond pas aux  valeurs inscrites dans les champs.
+					</p>
+					
+					<code>
+					<b>ng-repeat</b>="x <b>in</b> contacts <b>| filter</b> :{prenom:filtrePrenom} <b>| filter</b> :{nom:filtreNom}"
+					</code>
+				</div><br>
+				<div class="container">
+					<b>Exemple: </b><br>
+					<div class="row" style="margin-left: 5px!important">
+						<div class="input-field">
+							<input type="text" id="txtFiltre" ng-model="filtrePrenom" class="col s5">
+							<label for="txtFiltre">Rechercher les Prénoms contenant</label>
+						</div>
+					</div>
+					<div class="row" style="margin-left: 5px!important">
+						<div class="input-field">
+							<input type="text" id="txtFiltre2" ng-model="filtreNom" class="col s5" required>
+							<label for="txtFiltre2">Rechercher les noms contenant</label>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="center">
+			<h5>Ordre des données</h5>
+			<h5 style="font-size: 0.9em; color: gray">Directive orderBy</h5></div>
+
+			
+			<br>
+			
+			La directive orderBy permet d'ordonner un "array" selon le champ spécifié
+			<br><br>
+			<div class="center">
+			<code>
+
+			<b>ng-repeat</b>="x <b>in</b> contacts <b>| filter</b> :{prenom:filtrePrenom} <b>| orderBy:</b>'prenom'"
+			</code><br><br><br>
+			</div>
+
+			Il est possible de spécifier, à la place d'une valeur fixe, une variable de modèle pour organiser la liste selon le champ désiré.
+			<div class="center">
+			<code><br>
+			<b>ng-repeat</b>="x <b>in</b> contacts <b>| filter</b> :{prenom:filtrePrenom} <b>| orderBy:</b>champVoulu"
+			</code><br><br><br>
+			</div>
+			<div class="container">
+			<b>Exemple: </b><br>
+			
+			Il est possible d'organiser la liste de contacts selon les champs suivants: 
+			
+
+			<div class="input-field row">
+			<label for="selectTri"></label>
+			<select class="col s8" id="selectTri" name="selectTri">
+				<option value="" disabled selected>Sélectionnez le champ selon lequel la liste doit être trié</option>
+				<option ng-repeat="k in champs" value="{{k.nomChamp}}">{{k.nomChamp}}</option>
+
+			</select>
+
+			</div>
+			</div>
+			</div>
+			
+			<br>
+			<div class="row" align="justify">
+				<h4 class="center"  >Validation des données
+				<h5 class="center" style="color: #C9C9C9; font-size: 1.5em">--</h5>
+				<br>
+				<p>
+					Angular fournit un ensemble de directives et de classes CSS permettant de valider les entrées d'un formulaire et de fournir du feedback à l'utilisateur quant à l'état du formulaire.
+					<br>
+					Les propriétés sont les suivantes: 
+					<div class="center">
+					<table style="" class="container">
+						<tr><td><b>$untouched: </b></td><td> L'utilisateur n'a pas cliqué ou modifié le champ</td></tr>
+						<tr><td><b>$touched: </b></td><td> L'utilisateur a cliqué sur le champ et/ou l'a modifié</td></tr>
+						<tr><td><b>$pristine: </b></td> <td>L'utilisateur n'a pas modifié le champ</td></tr>
+						<tr><td><b>$dirty: </b></td><td> Le champ a été modifié par l'utilisateur</td></tr>
+						<tr><td><b>$invalid: </b></td><td> Le valeur du champ est invalide selon le critère spécifié</td></tr>
+						<tr><td><b>$valid: </b></td><td> La valeur du champ est valide selon le critère spécifié </td></tr>
+					</table>
+					</div>
+					<br><br>
+					Les classe CSS sont les suivantes: 
+					<div class="center">
+					<table style="" class="container">
+						<tr><td><b>ng-untouched: </b></td><td> L'utilisateur n'a pas cliqué ou modifié le champ</td></tr>
+						<tr><td><b>ng-touched: </b></td><td> L'utilisateur a cliqué sur le champ et/ou l'a modifié</td></tr>
+						<tr><td><b>ng-pristine: </b></td> <td>L'utilisateur n'a pas modifié le champ</td></tr>
+						<tr><td><b>ng-dirty: </b></td><td>Le champ a été modifié par l'utilisateur</td></tr>
+						<tr><td><b>ng-valid: </b></td><td> Le valeur du champ est valide selon le critère spécifié</td></tr>
+						<tr><td><b>ng-invalid: </b></td><td> La valeur du champ est invalide selon le critère spécifié </td></tr>
+					</table>
+					</div>
+ 
+				</p>
+
+
+				<h4 class="center"> Requêtes au serveur
+				<h5 class="center" style="color: #C9C9C9; font-size: 1.5em">Services utilisés dans cet exemple</h5>
+				<br><br>
+				Angular propose le service <b>$http</b>, qui est l'équivalent d'AJAX pour JQuery.  
+
+
+
+				
+<br><br><br>
+
+
+
+
+
+	todo	
+			Services{Timeout, http, interval, custom}
+			directives{order-by}
+
+			ng-disabled
+events?
+
+			
+			<hr class="container"><br><br>
+			</main>
+			<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+			<script src="js/app_angular.js""></script>
+			<script>
+				$(document).ready(function(){
+						$("#selectTri").material_select();
+
+				});
+			</script>
+			
+		</body>
+	</html>
