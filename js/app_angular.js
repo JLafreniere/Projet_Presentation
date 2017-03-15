@@ -44,7 +44,7 @@
     	];
 
     	$scope.toast = function(){let x = 4000;                                            //Déclaration de la fonction de scope "toast()", cette fonction pourra
-    		if($scope.masquerInactifs){                                                    //Être appelée à l'intérieure d'une directive angular ou d'une expression
+    		if(!$scope.masquerInactifs){                                                    //Être appelée à l'intérieure d'une directive angular ou d'une expression
     		Materialize.toast('Les contacts inactifs ont été masqués', 4000);              //Angular en ignorant $scope (ex: ng-click="toast" ou {{toast()}}) 
     		}                                                                              //mais devra être appelée de la manière suivante "$scope.toast()" à l'intérieur
     		else{                                                                          //du fichier .js
@@ -93,6 +93,51 @@
     	}
 
 
+
+
+        /*
+        ---------------------------------------------------------------------------------
+        ---------------------------------- ÉVÈNEMENTS -----------------------------------
+        ---------------------------------------------------------------------------------
+         */
+        
+
+        $scope.modifierStyle = function(event){
+            $("#"+event).addClass("eventFired"); //Transition vers couleur verte
+            setTimeout(function (){
+            $("#"+event).addClass("removeEvent");
+            }, 100);
+
+            setTimeout(function (){
+                                 $("#"+event).removeClass("removeEvent");
+                                 $("#"+event).removeClass("eventFired");
+            }, 200)
+        }
+
+        $scope.modifierStyleHalf = function(event){
+
+             $("#"+event).addClass("eventFired"); //Transition vers couleur verte
+
+        }
+
+        $scope.releaseStyle = function(event){
+
+
+            $("#"+event).addClass("removeEvent");
+
+            setTimeout(function (){
+                                 $("#"+event).removeClass("removeEvent");
+                                 $("#"+event).removeClass("eventFired");
+            }, 200)
+
+        }
+
+
+        /*
+        ---------------------------------------------------------------------------------
+        ---------------------------------------------------------------------------------
+        ---------------------------------------------------------------------------------
+        */
 		
   		$http.get("https://www.w3schools.com/angular/customers.php").then(function (response) { //Exemple de requête utilisant le service $http
         $scope.myData = response.data.records;

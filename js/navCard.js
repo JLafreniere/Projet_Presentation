@@ -50,7 +50,7 @@ $(function() {
         if (shouldBeFixed && !isFixed) {
             nav.css({
                 
-                top: 250
+                top: 340
           
                 
             });
@@ -61,7 +61,7 @@ $(function() {
             
             nav.css({
                 position: 'fixed',
-                top: 310
+                top: 400
             });
             isFixed = false;
             

@@ -5,15 +5,16 @@
 		<link rel="stylesheet" href="css/materialize.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="icon" href="https://camo.githubusercontent.com/6795c053f2fafee4d1c76f3a181876013827dd5e/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f333437303430322f313230383630372f32376637643134322d323564362d313165332d386330372d6139316532633736396435322e706e67">
+		<title>Démo Angular</title>
 	</head>
-	<body class="">
+	<body class="ng-cloak">
 		<nav>
 			<div class="nav-wrapper">
 				<a href="#" class="brand-logo" style="margin-left: 15px">Démonstration Angular.js</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="sass.html">Sass</a></li>
-					<li><a href="badges.html">Components</a></li>
-					<li><a href="collapsible.html">JavaScript</a></li>
+					<li><a href="index.html">Démonstration</a></li>
+					<li><a href="tuto.html">Tutoriel</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -21,7 +22,7 @@
 		<div class="">
 			
 			
-			<div id="navCard" class="card-panel z-depth-5 hide-on-med-and-down section table-of-contents" style="position: fixed; top: 70px; left: 10px; width: 16%; height: 230px">
+			<div id="navCard" class="card-panel z-depth-5 hide-on-med-and-down section table-of-contents" style="position: fixed; top: 70px; left: 10px; width: 16%; height: 310px">
 				
 				<h5 style="margin-top: 0px !important">Menu</h5>
 				
@@ -31,15 +32,17 @@
 					<li style="margin-bottom: 5px"><a href="#AffichageTri">Affichage et tri</a></li>
 					<li style="margin-bottom: 5px"><a href="#Ordre">Ordre</a></li>
 					<li style="margin-bottom: 5px"><a href="#Validations">Validations</a></li>
+					<li style="margin-bottom: 5px"><a href="#Evenements">Évènements</a></li>
+					<li style="margin-bottom: 5px"><a href="#Autre">Autres informations utiles</a></li>
 				</ul>
 				
 			</div>
 
-			<div id="navCard2" class="card-panel z-depth-5 hide-on-med-and-down section table-of-contents" style="position: fixed; top: 310px; left: 10px; width: 16%;">
+			<div id="navCard2" class="card-panel z-depth-5 hide-on-med-and-down section table-of-contents" style="position: fixed; top: 400px; left: 10px; width: 16%;">
 				
 				<h5 style="margin-top: 0px !important">Aperçu liste</h5>
 				
-				<ul>
+				<ul class="ng-cloak">
 					<li ng-repeat="x in contacts | filter :{prenom:filtrePrenom} | filter :{nom:filtreNom} | orderBy:champTri" ng-show="(masquerInactifs && x.actif) || !masquerInactifs">{{x.nom}}, {{x.prenom}} <img ng-show="!x.actif" class="right" src="https://t3.ftcdn.net/jpg/01/38/26/16/240_F_138261672_qLl1IHxZOCPfswr6nQBqXDfaGJFjkHeR.jpg" alt="" width="20" height="20"></li>
 
 				</ul>
@@ -47,8 +50,9 @@
 			</div>
 			<div class="section scrollspy" id="intro">
 				<h4 class="center" >Introduction à la démonstration</h4>
-				Cette démonstration d'Angular utilise pour les exemples un objet <b>"contact"</b>, qui comprend ces champs:
-				
+				<p align="justify">
+				Cette démonstration d'Angular utilise pour les exemples un objet <b>"contact"</b>. Une liste des contacts est disponibles plus bas et comprend les informations détaillées de chaque contact. Une liste sommaire comprenant le nom, le prénom et le status (actif/inactif) est affichée à gauche de l'écran. Un contact est défini par ces attributs:
+				</p>
 				<table class="striped">
 					<b>
 					<thead><th>Champ</th><th>Type</th></thead>
@@ -63,6 +67,9 @@
 				</table>
 				<br>
 			</div>
+
+			<hr>
+
 			<div class="section scrollspy" id="ModelVue">
 				<h4 class="center" >Synchronisation de la vue et du modèle</h4>
 				<h5 class="center" style="color: #C9C9C9; font-size: 1.5em">Directives utilisées dans cet exemple: <b>ng-model</b>, <b>ng-show</b>, <b>ng-hide</b></h5>
@@ -136,6 +143,9 @@
 				</div>
 				<br>
 				<div class="row" align="justify">
+
+					<hr>
+
 					<div class="scrollspy section" id="AffichageTri">
 						<h4 class="center"  >Affichage et tri des données</h4>
 						<h5 class="center" style="color: #C9C9C9; font-size: 1.5em">Directives utilisées dans cet exemple: ng-repeat, ng-show et filtres</h5>
@@ -190,6 +200,8 @@
 					</div>
 				</div>
 			</div>
+
+			<hr>
 			
 				<div class="section scrollspy" id="Ordre">
 				<div class="center">
@@ -230,6 +242,10 @@
 				
 				<br>
 			</div>
+
+			<hr>
+
+
 			<div class="row" align="justify">
 				<div class="section scrollspy" id="Validations">
 					<h4 class="center">Validation des données</h4>
@@ -240,7 +256,8 @@
 						<br>
 						Les propriétés sont les suivantes:
 						<div class="center">
-							<table style="" class="container">
+							<table style="" class="container striped">
+							<thead><th class="center">Attribut</th><th class="center">Définition</th></thead>
 								<tr><td><b>$untouched: </b></td><td> L'utilisateur n'a pas cliqué ou modifié le champ, , actualisé du moment que l'utilisateur quitte le champ</td></tr>
 								<tr><td><b>$touched: </b></td><td> L'utilisateur a cliqué sur le champ et/ou l'a modifié, , actualisé du moment que l'utilisateur quitte le champ</td></tr>
 								<tr><td><b>$pristine: </b></td> <td>L'utilisateur n'a pas modifié le champ</td></tr>
@@ -267,7 +284,7 @@
 									background-color: pink;
 								}
 							</style>
-							<table>
+							<table class="striped">
 								<thead><th>Attribut</th><th>Valeur</th></thead>
 								<tr>
 									<td>$valid</td>
@@ -303,7 +320,7 @@
 						</div>
 						<br><br>
 						Les classe CSS sont les suivantes:
-						<div class="center">
+						<div class="center striped">
 							<table style="" class="container">
 								<tr><td><b>ng-untouched: </b></td><td> L'utilisateur n'a pas cliqué ou modifié le champ, actualisé du moment que l'utilisateur quitte le champ</td></tr>
 								<tr><td><b>ng-touched: </b></td><td> L'utilisateur a cliqué sur le champ et/ou l'a modifié, actualisé du moment que l'utilisateur quitte le champ</td></tr>
@@ -317,7 +334,8 @@
 					</p>
 					<b>Exemple: </b><br>
 					<div class="container">
-						<table style="">
+						<table class="striped">
+						<thead><th>Classe</th><th class="center">Style</th></thead>
 							<tr><td><b>ng-untouched: </b></td><td>La couleur du texte est noire</td></tr>
 							<tr><td><b>ng-touched: </b></td><td>La couleur du texte est rouge</td></tr>
 							<tr><td><b>ng-pristine: </b></td> <td>La bordure du champ est verte</td></tr>
@@ -385,18 +403,147 @@
 					</div>
 
 				</div>
-				<h4 class="center section scrollspy"> Requêtes au serveur
-				<h5 class="center" style="color: #C9C9C9; font-size: 1.5em">Services utilisés dans cet exemple</h5>
-				<br><br>
-				Angular propose le service <b>$http</b>, qui est l'équivalent d'AJAX pour JQuery. La syntaxe d'une requête $http est la suivante: <br>
-				<br><br><br>
-				todo
-				Services{Timeout, http, interval, custom}
-				directives{order-by}
-				ng-disabled
-				events?
+<br><br>
+	<hr>
+
+				<div class="scrollspy section" id="Evenements">
+				<h4 class="center">Évènements</h4>
 				
-				<hr class="container"><br><br>
+				<p align="justify">
+					Angular fournit plusieurs directives très efficaces pour gérer les évènements se produisant sur une page. Les principaux évenements Angular sont les suivants.
+					<table class="striped container">
+						<thead>
+							<th>Évènement</th>
+							<th>Activation</th>
+						</thead>
+						<tr id="blur" >
+							<td><b>ng-blur</b></td>
+							<td>Le focus est perdu sur un <b style="text-decoration: underline">champ</b>. Le focus doit préalablement être mis sur le champ.
+								<div class="input-field">
+									<input type="text" ng-blur="modifierStyle('blur')">
+									<label for="bbb">Exemple</label>
+								</div>
+							
+							</td>
+						</tr>
+						<tr id="change" >
+							<td><b>ng-change</b></td>
+							<td>La valeur d'une variable du <b style="text-decoration: underline">modèle</b> a été modifiée (le champ doit comporter la directive <b>ng-model</b>).
+								<div class="input-field">
+									<input ng-model="testChange" type="text" ng-change="modifierStyle('change')">
+									<label for="bbb">Exemple</label>
+								</div>
+							</td>
+						</tr>
+						<tr id="clic" ng-click="modifierStyle('clic')">
+							<td><b>ng-click</b></td>
+							<td>Clic sur le champ ou l'élément</td>
+						</tr>
+						<tr id="copier" ng-copy="modifierStyle('copier')">
+							<td><b>ng-copy</b></td>
+							<td >Action "Copier" effectuée sur le champ ou l'élément</td>
+						</tr>
+						<tr id="couper" ng-cut="modifierStyle('couper')">
+							<td><b>ng-cut</b></td>
+							<td >Action "Couper" effectuée sur le champ ou l'élément</td>
+						</tr>
+						<tr id="dblclic" ng-dblclick="modifierStyle('dblclic')">
+							<td><b>ng-dblclick</b></td>
+							<td>Double clic effectué sur le champ ou l'élément</td>
+						</tr>
+						<tr id="focus" ng-focus="modifierStyle('focus')">
+							<td><b>ng-focus</b></td>
+							<td>Focus obtenu sur le champ ou l'élément***</td>
+						</tr>
+						<tr id="kdown" ng-keydown="modifierStyle('kdown')">
+							<td><b>ng-keydown</b></td>
+							<td>
+							L'utilisateur a appuyé sur une touche à l'intérieur du champ ou de l'élément.
+								<div class="input-field">
+									<input type="text" >
+									<label for="aaa">Exemple</label>
+								</div>
+
+							</td>
+						</tr>
+						<tr id="kup" ng-keyup="modifierStyle('kup')">
+							<td><b>ng-keyup</b></td>
+							<td>
+							L'utilisateur a appuyé sur une touche à l'intérieur du champ ou de l'élément.
+								<div class="input-field">
+									<input type="text" >
+									<label for="bbb">Exemple</label>
+								</div>
+
+							</td>
+						</tr>
+						<tr id="mdown" ng-mousedown="modifierStyleHalf('mdown')" ng-mouseup="releaseStyle('mdown')" ng-mouseleave="releaseStyle('mdown')">
+							<td><b>ng-mousedown</b></td>
+							<td>Clic gauche retenu sur le champ ou l'élément</td>
+						</tr>
+						<tr id="menter" ng-mouseenter="modifierStyle('menter')">
+							<td><b>ng-mouseenter</b></td>
+							<td>Le curseur est au dessus du champ ou de l'élément</td>
+						</tr>
+						<tr id="mleave" ng-mouseleave="modifierStyle('mleave')">
+							<td><b>ng-mouseleave</b></td>
+							<td>Le curseur vient de quitter le champ ou l'élément.</td>
+						</tr>
+						<tr id="mover" ng-mouseover="modifierStyleHalf('mover')" ng-mouseup="releaseStyle('mover')" ng-mouseleave="releaseStyle('mover')">
+							<td><b>ng-mouseover</b></td>
+							<td>Le curseur est à l'intérieur du champ ou de l'élément. Cet évènement est activé à chaque fois que le curseur change de noeud enfant.</td>
+						</tr>
+						<tr id="mup" ng-mouseup="modifierStyle('mup')">
+							<td><b>ng-mouseup</b></td>
+							<td>Le clic gauche vient d'être relaché sur le champ ou l'élément</td>
+						</tr>
+						<tr id="paste" ng-paste="modifierStyle('paste')">
+							<td><b>ng-paste</b></td>
+							<td>L'action "coller" a été effectué sur le champ ou l'élément</td>
+						</tr>
+					</table>
+
+
+				</p>
+				
+				
+
+				</div>
+				
+				<hr><br><br>
+								<div class="scrollspy section" id="Autre">
+				<h4 class="center">Autres informations utiles</h4>
+				La classe <b>ng-cloak</b> est une classe CSS qu'il est possible d'assigner à n'importe quel élément du document. Cette classe est active tant que l'application angular n'est pas complètement chargée et permet de masquer les artéfacts indésirables (ex.: { {  et } })
+
+				<br><br>
+				<br>
+				<br>
+				<hr>
+				<br>
+				<br>	
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</div>
+				<p style="color: gray">
+				Jonathan Lafrenière - C2T3 - 2017
+				</p>
 				</main>
 				<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>

@@ -2,5 +2,26 @@
 * @Author: jlafreniere
 * @Date:   2017-03-01 15:08:10
 * @Last Modified by:   jlafreniere
-* @Last Modified time: 2017-03-01 15:08:10
+* @Last Modified time: 2017-03-15 14:45:44
 */
+tr.eventFired{
+	background-color: darkgreen !important;
+    -webkit-transition: background-color 100ms linear ;
+    -ms-transition: background-color 100ms linear ;
+    transition: background-color 100ms linear;
+}
+
+
+table tr.removeEvent{
+	background-color: transparent !important;
+    -webkit-transition: background-color 100ms linear !important;
+    -ms-transition: background-color 100ms linear !important;
+    transition: background-color 100ms linear !important;
+}
+
+hr{
+	color: gray;
+	background-color: gray;
+	border-color: lightgray;
+}
+
